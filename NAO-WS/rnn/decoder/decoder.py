@@ -53,9 +53,9 @@ class Decoder(nn.Module):
     super(Decoder, self).__init__()
     self.num_layers = params['decoder_num_layers']
     self.hidden_size = params['decoder_hidden_size']
-    self.decoder_length = params['decoder_length']
-    self.source_length = params['encoder_length']
-    self.vocab_size = params['decoder_vocab_size']
+    self.decoder_length = params['num_intermediate_nodes'] * 2
+    self.source_length = params['num_intermediate_nodes'] * 2
+    self.vocab_size = params['num_intermediate_nodes'] + params['num_operations'] + 1
     self.dropout_p = params['decoder_dropout']
     self.dropout = nn.Dropout(p=self.dropout_p)
     self.rnn = nn.LSTM(self.hidden_size, self.hidden_size, self.num_layers, batch_first=True, dropout=self.dropout_p)

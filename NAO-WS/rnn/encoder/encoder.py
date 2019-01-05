@@ -13,13 +13,13 @@ class Encoder(nn.Module):
   def __init__(self, params):
     super(Encoder, self).__init__()
     self.num_layers = params['encoder_num_layers']
-    self.vocab_size = params['encoder_vocab_size']
+    self.vocab_size = params['num_intermediate_nodes'] + params['num_operations'] + 1  # eos vocab
     self.emb_size = params['encoder_emb_size']
     self.hidden_size = params['encoder_hidden_size']
     self.dropout_p = params['encoder_dropout']
     self.dropout = nn.Dropout(p=self.dropout_p)
-    self.encoder_length = params['encoder_length']
-    self.source_length = params['source_length']
+    self.encoder_length = params['num_intermediate_nodes'] * 2
+    self.source_length = params['num_intermediate_nodes'] * 2
     self.mlp_num_layers = params['mlp_num_layers']
     self.mlp_hidden_size = params['mlp_hidden_size']
     self.mlp_dropout_p = params['mlp_dropout']
