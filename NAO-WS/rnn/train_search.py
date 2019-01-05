@@ -432,7 +432,8 @@ def main():
     all_params = vars(args)
     with open(os.path.join(args.model_dir, 'hparams.json'), 'w') as f:
         json.dump(all_params, f)
-    train()
+    best_geno = train()
+    print('SEARCH ENDED, BEST GENOTYPE FOUND IS: {}'.format(best_geno))
 
 
 if __name__ == '__main__':
